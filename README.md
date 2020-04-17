@@ -11,5 +11,5 @@ npm install
 npm run serve
 ```
 
-###See working example [here](https://kishorpokharel.github.io/vue-sorting-visualizer/)
+___See working example [here](https://kishorpokharel.github.io/vue-sorting-visualizer/)___
 
