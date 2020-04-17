@@ -1,11 +1,16 @@
 <template>
   <div class="array_bars">
 	<div class="array_bar_wrapper">
-		<div v-for="(h, index) in heights" :key="index" class="each_bar" v-bind:style="{ height: h + 'px' }"></div>
+		<div v-for="(h, index) in heights" 
+			:key="index" 
+			class="each_bar" 
+			v-bind:style="{ height: h + 'px' }"
+			>
+		</div>
 	</div>
 
 	<div class="action-buttons">
-		<button @click="resetArray">Reset</button>
+		<button @click="resetArray" :disabled="comparing">Reset</button>
 		<button @click="bubbleSort">Bubble Sort</button>
 	</div>
   </div>
@@ -18,9 +23,10 @@ export default {
 	data() {
 		return {
 			heights: [],
-			totalBars: 150,
+			totalBars: 100,
 			i: 0,
 			j: 0,
+			comparing: false,
 		}
 	},
 
@@ -38,27 +44,30 @@ export default {
 			}
 			this.i = 0;
 			this.j = 0;
+			return 0;
 		},
 
 		bubbleSort() {
+			this.comparing = true;
 			if(this.i < this.heights.length) {
 				for(this.j = 0; this.j<this.heights.length-this.i-1; this.j++) {
-					if(this.heights[this.j]>this.heights[this.j+1]) {
+					if(this.heights[this.j] > this.heights[this.j+1]) {
 						let temp = this.heights[this.j];
 						this.$set(this.heights, this.j, this.heights[this.j+1]);
 						this.$set(this.heights, this.j+1, temp);
 					}
 				}
 			}else {
+				this.comparing = false;
 				return 0;
 			}
 			this.i++;
-			setTimeout(this.bubbleSort, 3)
+			setTimeout(this.bubbleSort, 3);
 		}
 	},
 
 	mounted() {
-		for(let i=0; i<this.totalBars; i++) {
+		for(let i=0; i < this.totalBars; i++) {
 			this.heights.push(this.getRandomInt(2, 400));
 		}
 	},
@@ -73,14 +82,14 @@ export default {
 	align-items: center;
 }
 .array_bar_wrapper {
-	width: 1200px;
+	width: 800px;
 	height: 420px;
 	display: flex;
 	justify-content: space-between;
 }
 
 .each_bar {
-	width: 5px;
+	width: 2px;
 	background-color: #b0b0b0;
 }
 
@@ -88,5 +97,9 @@ export default {
 	display: flex;
 	flex-direction: column;
 	margin: 20px;
+}
+
+.comparing-two {
+	background-color: #79bde6;
 }
 </style>
