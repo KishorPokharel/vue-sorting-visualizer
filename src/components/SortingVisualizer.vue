@@ -10,8 +10,8 @@
 	</div>
 
 	<div class="action-buttons">
-		<button @click="resetArray" :disabled="comparing">Reset</button>
-		<button @click="bubbleSort">Bubble Sort</button>
+		<button @click="resetArray" :disabled="comparing" class="action-btn">Reset</button>
+		<button @click="bubbleSort" class="action-btn">Bubble Sort</button>
 	</div>
   </div>
 </template>
@@ -101,5 +101,15 @@ export default {
 
 .comparing-two {
 	background-color: #79bde6;
+}
+
+.action-btn {
+	cursor: pointer;
+	background-color: #333;
+	padding: 10px 13px;
+	margin-bottom: 3px;
+	border: none;
+	color: #fff;
+	border-radius: 5px;
 }
 </style>
